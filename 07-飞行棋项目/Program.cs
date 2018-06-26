@@ -152,6 +152,11 @@ namespace _07_飞行棋项目
             #endregion
         }
 
+        /// <summary>
+        /// 绘制地图关卡
+        /// </summary>
+        /// <param name="i">当前的坐标</param>
+        /// <returns>关卡的符号坐标</returns>
         public static string DrawStringMaps(int i)
         {
             string str = "";
