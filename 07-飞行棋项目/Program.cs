@@ -72,48 +72,128 @@ namespace _07_飞行棋项目
         /// </summary>
         public static void DrawMap()
         {
-            // 画第一条横线
+            #region 画第一条横线
             for (int i = 0; i < 30; i++)
             {
-                if (playerPos[0] == playerPos[1] && playerPos[0] == i)
+                Console.Write(DrawStringMaps(i));
+            }
+            #endregion
+
+            #region 画第一条竖线
+            for (int i = 30; i < 35; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < 30; j++)
                 {
-                    Console.Write("<>");
-                }
-                else if (playerPos[0] == i)
-                {
-                    Console.Write("Ａ");
-                }
-                else if (playerPos[1] == i)
-                {
-                    Console.Write("Ｂ");
-                }
-                else
-                {
-                    switch (maps[i])
+                    if (j == 29)
                     {
-                        case 0:
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                            Console.Write("□");
-                            break;
-                        case 1:
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("◎");
-                            break;
-                        case 2:
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write("☆");
-                            break;
-                        case 3:
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write("▲");
-                            break;
-                        case 4:
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            Console.Write("卐");
-                            break;
+                        Console.Write(DrawStringMaps(i));
+                    }
+                    else
+                    {
+                        Console.Write("  ");
                     }
                 }
             }
+            #endregion
+
+            #region 画第二条横线
+            Console.WriteLine();
+            for (int i = 35; i < 65; i++)
+            {
+                Console.Write(DrawStringMaps(i));
+            }
+            #endregion
+
+            #region 画第二条竖线
+            for (int i = 65; i < 70; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < 30; j++)
+                {
+                    if (j == 0)
+                    {
+                        
+                        Console.Write(DrawStringMaps(i));
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                }
+            }
+            #endregion
+
+            #region 画第三条横线
+            Console.WriteLine();
+            for (int i = 65; i < 95; i++)
+            {
+                Console.Write(DrawStringMaps(i));
+            }
+            #endregion
+
+            #region 画第三条竖线
+            for (int i = 95; i < 100; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < 30; j++)
+                {
+                    if (j == 29)
+                    {
+
+                        Console.Write(DrawStringMaps(i));
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                }
+            }
+            #endregion
+        }
+
+        public static string DrawStringMaps(int i)
+        {
+            string str = "";
+            if (playerPos[0] == playerPos[1] && playerPos[0] == i)
+            {
+                str = "<>";
+            }
+            else if (playerPos[0] == i)
+            {
+                str = "Ａ";
+            }
+            else if (playerPos[1] == i)
+            {
+                str = "Ｂ";
+            }
+            else
+            {
+                switch (maps[i])
+                {
+                    case 0:
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        str = "□";
+                        break;
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        str = "◎";
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        str = "☆";
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        str = "▲";
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        str = "卐";
+                        break;
+                }
+            }
+            return str;
         }
     }
 }
