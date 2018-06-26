@@ -44,8 +44,14 @@ namespace _07_飞行棋项目
                 
             }
             #endregion
+            // 清屏
+            Console.Clear();
+            GameShow();
+            Console.WriteLine("{0}的士兵用A表示", playerNames[0]);
+            Console.WriteLine("{0}的士兵用B表示", playerNames[1]);
             InitialMaps();
             DrawMap();
+            Console.ReadKey();
         }
 
         
@@ -107,6 +113,9 @@ namespace _07_飞行棋项目
         /// </summary>
         public static void DrawMap()
         {
+            // 显示图例
+            Console.WriteLine("图例:幸运轮盘:◎   地雷:☆   暂停:▲   时空隧道:卐");
+
             #region 画第一条横线
             for (int i = 0; i < 30; i++)
             {
@@ -166,6 +175,9 @@ namespace _07_飞行棋项目
                 Console.Write(DrawStringMaps(i));
             }
             #endregion
+
+            // 换行
+            Console.WriteLine();
         }
 
         /// <summary>
