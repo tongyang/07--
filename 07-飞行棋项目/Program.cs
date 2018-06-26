@@ -12,13 +12,47 @@ namespace _07_飞行棋项目
         public static int[] maps = new int[100];
         // 玩家坐标
         public static int[] playerPos = new int[2];
+        // 玩家姓名
+        public static string[] playerNames = new string[2];
 
         static void Main(string[] args)
         {
             GameShow();
-            Console.ReadKey();
+
+            #region 输入玩家姓名
+            Console.WriteLine("请输入玩家A的姓名");
+            playerNames[0] = Console.ReadLine();
+            while (playerNames[0] == "")
+            {
+                Console.WriteLine("玩家A的姓名不能为空，请重新输入");
+                playerNames[0] = Console.ReadLine();
+            }
+            Console.WriteLine("请输入玩家B的姓名");
+            playerNames[1] = Console.ReadLine();
+            while (playerNames[1] == "" || playerNames[1] == playerNames[0])
+            {
+                if (playerNames[1] == "")
+                {
+                    Console.WriteLine("玩家B的姓名不能为空，请重新输入");
+                    playerNames[1] = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("玩家B的姓名不能与玩家A相同，请重新输入");
+                    playerNames[1] = Console.ReadLine();
+                }
+                
+            }
+            #endregion
+            InitialMaps();
+            DrawMap();
         }
 
+        
+
+        /// <summary>
+        /// 绘制游戏头
+        /// </summary>
         public static void GameShow()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -33,10 +67,10 @@ namespace _07_飞行棋项目
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("*********************************");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("*********************************");
-            InitialMaps();
-            DrawMap();
+            Console.WriteLine("*********************************");InitialMaps();
+            
         }
+        
         /// <summary>
         /// 初始化地图
         /// </summary>
@@ -67,6 +101,7 @@ namespace _07_飞行棋项目
                 maps[index] = 4;
             }
         }
+
         /// <summary>
         /// 画地图
         /// </summary>
@@ -99,7 +134,7 @@ namespace _07_飞行棋项目
 
             #region 画第二条横线
             Console.WriteLine();
-            for (int i = 35; i < 65; i++)
+            for (int i = 64; i > 34; i--)
             {
                 Console.Write(DrawStringMaps(i));
             }
@@ -126,28 +161,9 @@ namespace _07_飞行棋项目
 
             #region 画第三条横线
             Console.WriteLine();
-            for (int i = 65; i < 95; i++)
+            for (int i = 70; i < 100; i++)
             {
                 Console.Write(DrawStringMaps(i));
-            }
-            #endregion
-
-            #region 画第三条竖线
-            for (int i = 95; i < 100; i++)
-            {
-                Console.WriteLine();
-                for (int j = 0; j < 30; j++)
-                {
-                    if (j == 29)
-                    {
-
-                        Console.Write(DrawStringMaps(i));
-                    }
-                    else
-                    {
-                        Console.Write("  ");
-                    }
-                }
             }
             #endregion
         }
