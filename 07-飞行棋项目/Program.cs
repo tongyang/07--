@@ -14,7 +14,6 @@ namespace _07_飞行棋项目
         public static int[] playerPos = new int[2];
         // 玩家姓名
         public static string[] playerNames = new string[2];
-        
 
         static void Main(string[] args)
         {
@@ -56,19 +55,59 @@ namespace _07_飞行棋项目
             {
                 Console.Clear();
                 DrawMap();
-
                 GoStep(0, playerPos[0]);
+                if (playerPos[0] >= 99)
+                {
+                    break;
+                }
                 Console.Clear();
                 DrawMap();
                 GoStep(1, playerPos[1]);
-
+                if (playerPos[1] >= 99)
+                {
+                    break;
+                }
                 Console.Clear();
                 DrawMap();
             }
-
+            // 当玩家赢得比赛
+            WinGame();
         }
 
-        
+        /// <summary>
+        /// 赢得比赛的方法
+        /// </summary>
+        public static void WinGame()
+        {
+            string name = "";
+            if (playerPos[0] < playerPos[1])
+            {
+                name = playerNames[1];
+            }
+            else
+            {
+                name = playerNames[0];
+            }
+            Console.WriteLine("玩家{0}赢得比赛！！！", name);
+            Console.ReadKey();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("                                          ◆                      ");
+            Console.WriteLine("                    ■                  ◆               ■        ■");
+            Console.WriteLine("      ■■■■  ■  ■                ◆■         ■    ■        ■");
+            Console.WriteLine("      ■    ■  ■  ■              ◆  ■         ■    ■        ■");
+            Console.WriteLine("      ■    ■ ■■■■■■       ■■■■■■■   ■    ■        ■");
+            Console.WriteLine("      ■■■■ ■   ■                ●■●       ■    ■        ■");
+            Console.WriteLine("      ■    ■      ■               ● ■ ●      ■    ■        ■");
+            Console.WriteLine("      ■    ■ ■■■■■■         ●  ■  ●     ■    ■        ■");
+            Console.WriteLine("      ■■■■      ■             ●   ■   ■    ■    ■        ■");
+            Console.WriteLine("      ■    ■      ■            ■    ■         ■    ■        ■");
+            Console.WriteLine("      ■    ■      ■                  ■               ■        ■ ");
+            Console.WriteLine("     ■     ■      ■                  ■           ●  ■          ");
+            Console.WriteLine("    ■    ■■ ■■■■■■             ■              ●         ●");
+            Console.ResetColor();
+            Console.ReadKey();
+        }
 
         /// <summary>
         /// 计算走的步数
@@ -189,8 +228,6 @@ namespace _07_飞行棋项目
             
         }
 
-
-
         /// <summary>
         /// 暂停方法
         /// </summary>
@@ -198,6 +235,7 @@ namespace _07_飞行棋项目
         /// <param name="pos"></param>
         public static void Paurse(int play, int pos)
         {
+            Console.Clear();
             DrawMap();
             GoStep(1 - play, playerPos[1 - play]);
         }
